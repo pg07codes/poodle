@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import parseSearchQuery from './../../helpers/parseSearchQuery'
+import Notepad from './../Notepad'
+
 
 export function Search() {
 
@@ -15,13 +17,9 @@ export function Search() {
 
     function handleSubmit(e) {
         // Handling Enter Press for submit
-        if(searchQuery.trim()===""){
-            return
-        }
-        
         if (e.keyCode === 13) {
             parseSearchQuery(searchQuery)
-            // console.log('parseSearch will handle', searchQuery)
+            
         }
 
         // Handling button press for submit
@@ -31,6 +29,7 @@ export function Search() {
     const inputProps = {
         onKeyDown: handleSubmit
     }
+
     const InputProps = {
         endAdornment: (
             <InputAdornment position="end">
@@ -48,7 +47,9 @@ export function Search() {
                 <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} />
 
             </Grid>
+            <Notepad/>
         </Grid>
+
 
 
     );

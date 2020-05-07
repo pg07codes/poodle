@@ -1,5 +1,6 @@
 import React from 'react';
 import {Search} from '../Search';
+import Notepad from '../Notepad'
 
 function App() {
   return (
