@@ -6,23 +6,23 @@ import SearchIcon from '@material-ui/icons/Search';
 import parseSearchQuery from './../../helpers/parseSearchQuery'
 import Notepad from './../Notepad'
 
+import Filters from './Filters'
 
 export function Search() {
 
     const [searchQuery, setSearchQuery] = useState("");
 
     function handleChange(e) {
-        setSearchQuery(e.target.value)
+        setSearchQuery(e.target.value);
     }
 
     function handleSubmit(e) {
         // Handling Enter Press for submit
         if (e.keyCode === 13) {
-            parseSearchQuery(searchQuery)
-            
+            parseSearchQuery(searchQuery);
+            e.target.value="";
+            setSearchQuery("");
         }
-
-        // Handling button press for submit
 
     }
 
@@ -42,12 +42,19 @@ export function Search() {
 
 
         <Grid container justify="center">
-            <Grid item xs={10} sm={8} md={6}>
 
-                <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} />
+            <Grid container justify="center">
+                <Grid item xs={10} sm={8} md={6}>
 
-            </Grid>
-            <Notepad/>
+                    <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} />
+
+                </Grid>
+
+                <Notepad />
+
+                <Filters/>
+                </Grid>
+
         </Grid>
 
 

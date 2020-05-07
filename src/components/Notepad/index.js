@@ -18,11 +18,7 @@ export default function TemporaryDrawer() {
     const [notes, setNotes] = useState([
         { id: 1, name: "shakile" },
         { id: 2, name: "fiona" },
-        { id: 3, name: "lina" },
-        { id: 4, name: "checkero" },
-        { id: 5, name: "rababi" },
-        { id: 6, name: "semolina" },
-        { id: 7, name: "raslapi" }
+        { id: 3, name: "lina" }
     ]);
 
 
@@ -36,7 +32,7 @@ export default function TemporaryDrawer() {
 
 
     const addNoteToNotepad = (note) => {
-        console.log(note, ' recieved')
+        
         let newId = notes.length + 1;
         setNotes([...notes, { id: newId, name: note }]);
 

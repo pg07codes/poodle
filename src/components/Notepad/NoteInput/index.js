@@ -9,15 +9,25 @@ export default function NoteInput(props) {
     const [note, setNote] = useState("");
 
     function handleChange(e) {
-        setNote(e.target.value)
+        setNote(e.target.value);
     }
 
     function handleSubmit(e) {
         // Handling Enter Press for submit
-        console.log('clicked')
-        console.log(note, ' passed')
-        props.addNoteToNotepad(note)
+        if (e.keyCode === 13) {
 
+            props.addNoteToNotepad(note);
+            e.target.value = "";
+            setNote("");
+        }
+
+        // Handle button press
+
+
+    }
+
+    const inputProps = {
+        onKeyDown: handleSubmit
     }
 
     const InputProps = {
@@ -30,7 +40,7 @@ export default function NoteInput(props) {
 
     return (
 
-        <TextField onChange={handleChange} margin="normal" InputProps={InputProps} />
+        <TextField onChange={handleChange} margin="normal" inputProps={inputProps} InputProps={InputProps} />
 
     );
 }
