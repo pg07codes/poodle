@@ -8,7 +8,7 @@ import Notepad from './../Notepad'
 
 import Filters from './Filters'
 
-export function Search() {
+export default function Search() {
 
     const [searchQuery, setSearchQuery] = useState("");
 

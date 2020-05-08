@@ -7,6 +7,9 @@ import { ReactSortable } from "react-sortablejs";
 import NoteInput from './NoteInput'
 
 const useStyles = makeStyles({
+    root:{
+        minWidth:"20vw !important"
+    },
     list: {
         width: '250', // nothing happening from it man.
     }
@@ -45,7 +48,7 @@ export default function TemporaryDrawer() {
                 <Button onClick={toggleDrawer(true)}> notepad </Button>
                 <Drawer anchor='right' open={notepadState} onClose={toggleDrawer(false)}>
                     <div
-                        className={classes.list}
+                        className={`${classes.list} ${classes.root}`}
                         role="presentation"
                     //onClick={toggleDrawer(false)}
                     // onKeyDown={toggleDrawer(false)}
