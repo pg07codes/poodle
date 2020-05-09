@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
-import Paper from '@material-ui/core/Paper';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import { ReactSortable } from "react-sortablejs";
 import NoteInput from './NoteInput'
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import CreateIcon from '@material-ui/icons/Create';
+import { nanoid } from 'nanoid'
 
 const useStyles = makeStyles({
-    root:{
-        minWidth:"20vw !important"
+    root: {
+        padding: '1px 10px'
     },
-    list: {
-        width: '250', // nothing happening from it man.
+    card: {
+        maxWidth:'19vw',
+        margin: '5px 1px'
     }
 });
 
 export default function TemporaryDrawer() {
     const classes = useStyles();
     const [notepadState, setNotepadState] = useState(false);
-    const [notes, setNotes] = useState([
-        { id: 1, name: "shakile" },
-        { id: 2, name: "fiona" },
-        { id: 3, name: "lina" }
-    ]);
+    const [notes, setNotes] = useState([]);
 
+    useEffect(() => {
+        if (localStorage.getItem('notes') !== null) {
+            setNotes(JSON.parse(localStorage.getItem('notes')))
+        }
+    }, [])
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -35,20 +41,40 @@ export default function TemporaryDrawer() {
 
 
     const addNoteToNotepad = (note) => {
-        
-        let newId = notes.length + 1;
-        setNotes([...notes, { id: newId, name: note }]);
+
+        let temp = [{ id: nanoid(10), value: note }, ...notes];
+        setNotes(temp);
+        localStorage.setItem('notes', JSON.stringify(temp));
 
     }
+
+    const handleDelete = (id) => (e) => {
+
+        let temp = notes.filter(i => (i.id !== id));
+        setNotes(temp);
+        localStorage.setItem('notes', JSON.stringify(temp));
+    }
+
+    const noteCards = (i) => (
+        <Card onDoubleClick={handleDelete(i.id)} key={i.id} className={classes.card}>
+            <CardContent>
+                <Typography variant="caption" component="p">
+                    {i.value}
+                </Typography>
+            </CardContent>
+        </Card>
+    );
 
     return (
         <div>
 
             <React.Fragment>
-                <Button onClick={toggleDrawer(true)}> notepad </Button>
+                <Button onClick={toggleDrawer(true)}>
+                    <CreateIcon />
+                </Button>
                 <Drawer anchor='right' open={notepadState} onClose={toggleDrawer(false)}>
                     <div
-                        className={`${classes.list} ${classes.root}`}
+                        className={`${classes.root}`}
                         role="presentation"
                     //onClick={toggleDrawer(false)}
                     // onKeyDown={toggleDrawer(false)}
@@ -56,12 +82,8 @@ export default function TemporaryDrawer() {
 
                         <NoteInput addNoteToNotepad={addNoteToNotepad} />
 
-                        <ReactSortable list={notes} setList={setNotes}>
-                            {notes.map(item => (
-                                <Paper key={item.id}>
-                                    <div>{item.name}</div>
-                                </Paper>
-                            ))}
+                        <ReactSortable swapThreshold={0.3} list={notes} setList={setNotes}>
+                            {notes.map(i => noteCards(i))}
                         </ReactSortable>
 
                     </div>
