@@ -14,20 +14,18 @@ const useStyles = makeStyles({
     }
 });
 
-export default function TemporaryDrawer() {
+export default function ShortNews() {
     const classes = useStyles();
     const [newsGroupState, setNewsGroupState] = useState(false);
     const [news, setNews] = useState([]);
 
     useEffect(() => {
+        
         getShortNews().then((resp) => {
             setNews(resp)
         })
 
-        console.log('updated')
-        console.log(news)
-
-    })
+    },[])
 
 
     const toggleDrawer = (open) => (event) => {
