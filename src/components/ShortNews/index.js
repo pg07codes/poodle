@@ -4,14 +4,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import getShortNews from './../../helpers/getShortNews'
 import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
 const useStyles = makeStyles({
-    root:{
-        maxHeight:"60vh !important"
+    root: {
+        position: "absolute",
+        bottom:'3vh',
+        left:'1vw'
     },
-    fullList: {
-        width: 'auto' // nothing happening from it man.
+    newsDrawer: {
+        maxHeight: "60vh !important"
     }
 });
 
@@ -21,12 +24,12 @@ export default function ShortNews() {
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        
+
         getShortNews().then((resp) => {
             setNews(resp)
         })
 
-    },[])
+    }, [])
 
 
     const toggleDrawer = (open) => (event) => {
@@ -38,32 +41,33 @@ export default function ShortNews() {
     };
 
     return (
-        
-            <React.Fragment>
-                <Fab onClick={toggleDrawer(true)} color="secondary" aria-label="edit">
+
+        <div className={classes.root}>
+            <Tooltip title="HackerNews" aria-label="HackerNews">
+                <Fab onClick={toggleDrawer(true)} size="medium" color="secondary" aria-label="edit">
                     <DehazeIcon />
                 </Fab>
-                <Drawer anchor='bottom' open={newsGroupState} onClose={toggleDrawer(false)}>
-                    <div
-                        className={`${classes.fullList} ${classes.root}`}
-                        role="presentation"
-                        onClick={toggleDrawer(false)}
-                        onKeyDown={toggleDrawer(false)}
-                    >
+            </Tooltip>
+            <Drawer anchor='bottom' open={newsGroupState} onClose={toggleDrawer(false)}>
+                <div
+                    className={classes.newsDrawer}
+                    role="presentation"
+                    onClick={toggleDrawer(false)}
+                    onKeyDown={toggleDrawer(false)}
+                >
 
-                        {news.map(i => (
-                            <Paper key={i.id}>
-                                <h2>{i.title}</h2>
-                                <a href={i.url} target="_blank" >click here to read</a>
-                                <h5>{i.by}</h5>
-                            </Paper>
+                    {news.map(i => (
+                        <Paper key={i.id}>
+                            <h2>{i.title}</h2>
+                            <a href={i.url} target="_blank" >click here to read</a>
+                            <h5>{i.by}</h5>
+                        </Paper>
 
-                        ))}
+                    ))}
 
-
-                    </div>
-                </Drawer>
-            </React.Fragment>
+                </div>
+            </Drawer>
+        </div>
 
     );
 }

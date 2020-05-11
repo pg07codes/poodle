@@ -8,10 +8,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
 import { nanoid } from 'nanoid'
 
 const useStyles = makeStyles({
-    root: {
+    root:{
+        position: "absolute",
+        top: '3vh',
+        right:'1vw'
+    },
+    notepadDrawer: {
         padding: '1px 10px'
     },
     card: {
@@ -68,15 +74,16 @@ export default function TemporaryDrawer() {
     );
 
     return (
-        <div>
+        <div className={classes.root}>
 
-            <React.Fragment>
-                <Fab onClick={toggleDrawer(true)} color="secondary" aria-label="edit">
-                    <EditIcon />
-                </Fab>
+                <Tooltip title="Add Note" aria-label="Add Note">
+                    <Fab onClick={toggleDrawer(true)} size="medium" color="secondary" aria-label="edit">
+                        <EditIcon />
+                    </Fab>
+                </Tooltip>
                 <Drawer anchor='right' open={notepadState} onClose={toggleDrawer(false)}>
                     <div
-                        className={`${classes.root}`}
+                        className={classes.notepadDrawer}
                         role="presentation"
                     //onClick={toggleDrawer(false)}
                     // onKeyDown={toggleDrawer(false)}
@@ -90,7 +97,6 @@ export default function TemporaryDrawer() {
 
                     </div>
                 </Drawer>
-            </React.Fragment>
 
         </div>
     );

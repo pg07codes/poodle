@@ -3,13 +3,21 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import parseSearchQuery from './../../helpers/parseSearchQuery'
-import Notepad from './../Notepad'
+import parseSearchQuery from './../../helpers/parseSearchQuery';
+import { makeStyles } from '@material-ui/core/styles';
+import Filters from './Filters';
 
-import Filters from './Filters'
+const useStyles = makeStyles({
+    input: {
+        backgroundColor: 'white',
+        borderRadius:'7px'
+    }
+});
+
+    
 
 export default function Search() {
-
+    const classes = useStyles();
     const [searchQuery, setSearchQuery] = useState("");
     const [filter, setFilter] = useState("google");
     const inputRef=React.createRef();
@@ -39,7 +47,7 @@ export default function Search() {
 
     const inputProps = {
         onKeyDown: handleEnterToSubmit,
-        ref:inputRef
+        ref:inputRef,
     }
 
     const InputProps = {
@@ -60,16 +68,11 @@ export default function Search() {
 
                 <Grid item xs={8} md={6}>
 
-                    <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
+                    <TextField className={classes.input} onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
 
                 </Grid>
 
-                <Grid item xs sm={1} md={2} />
-                <Grid item xs={1} md={1} >
-
-                    <Notepad />
-
-                </Grid>
+                <Grid item xs={2} md={3} />   {/* dummy */}
 
             </Grid>
 

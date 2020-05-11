@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles({
-
-});
+    root: {
+        position: "absolute",
+        bottom: '3vh',
+        right:'1vw'
+    }
+})
 
 export default function CustomBackground() {
+    const classes=useStyles();
 
     let inputFile = React.createRef();
 
@@ -46,12 +52,14 @@ export default function CustomBackground() {
     }
 
     return (
-        <div>
-            <Fab color="secondary" onClick={AddBackgroundHandler} aria-label="edit">
-                <AddPhotoIcon />
-            </Fab>
-            <input style={{ visibility: 'hidden' }} ref={inputFile} onChange={handleChange} type='file' accept="image/png, image/jpeg ,image/jpg" />
-        </div>
+        <div className={classes.root}>
+            <Tooltip title="Custom Background" aria-label="Custom Background">
+                <Fab color="secondary" size="medium" onClick={AddBackgroundHandler} aria-label="edit">
+                    <AddPhotoIcon />
+                </Fab>
+            </Tooltip>
+            <input style={{ display: 'none' }} ref={inputFile} onChange={handleChange} type='file' accept="image/png, image/jpeg ,image/jpg" />
+        </div >
     );
 
 }
