@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/poodle/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/poodle/static/js/main.7ac0414d.chunk.js",
-    "main.js.map": "/poodle/static/js/main.7ac0414d.chunk.js.map",
+    "main.js": "/poodle/static/js/main.abdb2bfd.chunk.js",
+    "main.js.map": "/poodle/static/js/main.abdb2bfd.chunk.js.map",
     "runtime-main.js": "/poodle/static/js/runtime-main.2e64c458.js",
     "runtime-main.js.map": "/poodle/static/js/runtime-main.2e64c458.js.map",
-    "static/js/2.2a89e594.chunk.js": "/poodle/static/js/2.2a89e594.chunk.js",
-    "static/js/2.2a89e594.chunk.js.map": "/poodle/static/js/2.2a89e594.chunk.js.map",
+    "static/js/2.053ff202.chunk.js": "/poodle/static/js/2.053ff202.chunk.js",
+    "static/js/2.053ff202.chunk.js.map": "/poodle/static/js/2.053ff202.chunk.js.map",
     "index.html": "/poodle/index.html",
-    "precache-manifest.67e317ee5567f89422daeab427246b0d.js": "/poodle/precache-manifest.67e317ee5567f89422daeab427246b0d.js",
+    "precache-manifest.0b21f18ae0c100c2a5f282e2bc2d4900.js": "/poodle/precache-manifest.0b21f18ae0c100c2a5f282e2bc2d4900.js",
     "service-worker.js": "/poodle/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/poodle/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.2a89e594.chunk.js.LICENSE.txt": "/poodle/static/js/2.2a89e594.chunk.js.LICENSE.txt"
+    "static/js/2.053ff202.chunk.js.LICENSE.txt": "/poodle/static/js/2.053ff202.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2e64c458.js",
-    "static/js/2.2a89e594.chunk.js",
+    "static/js/2.053ff202.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.7ac0414d.chunk.js"
+    "static/js/main.abdb2bfd.chunk.js"
   ]
 }
