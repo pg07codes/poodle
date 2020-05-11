@@ -37,8 +37,7 @@ export default function ShortNews() {
     };
 
     return (
-        <div>
-
+        
             <React.Fragment>
                 <Button onClick={toggleDrawer(true)}> news </Button>
                 <Drawer anchor='bottom' open={newsGroupState} onClose={toggleDrawer(false)}>
@@ -63,6 +62,5 @@ export default function ShortNews() {
                 </Drawer>
             </React.Fragment>
 
-        </div>
     );
 }
