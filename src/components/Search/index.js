@@ -47,7 +47,7 @@ export default function Search() {
 
     const inputProps = {
         onKeyDown: handleEnterToSubmit,
-        ref:inputRef,
+        ref:inputRef
     }
 
     const InputProps = {
@@ -68,7 +68,7 @@ export default function Search() {
 
                 <Grid item xs={8} md={6}>
 
-                    <TextField className={classes.input} onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
+                    <TextField className={classes.input} onChange={handleChange} fullWidth={true} autoFocus margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
 
                 </Grid>
 

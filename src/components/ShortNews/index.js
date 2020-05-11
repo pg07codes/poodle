@@ -6,15 +6,20 @@ import getShortNews from './../../helpers/getShortNews'
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import DehazeIcon from '@material-ui/icons/Dehaze';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
         position: "absolute",
-        bottom:'3vh',
-        left:'1vw'
+        bottom: '3vh',
+        left: '1vw'
     },
     newsDrawer: {
-        maxHeight: "60vh !important"
+        maxHeight: "55vh"
+    },
+    newsCardsStyle:{
+        margin:'7px 0' // do not change left/right margin or layout breaks 
     }
 });
 
@@ -40,6 +45,36 @@ export default function ShortNews() {
         setNewsGroupState(open);
     };
 
+    function newsCards(i) {
+        return (
+            <React.Fragment key={i.id} >
+                <Grid item xs={1} md={2} />   {/* dummy */}
+
+                <Grid item xs={10} md={8} className={classes.newsCardsStyle} >
+
+                    <Paper >
+                        <Typography variant="h5" gutterBottom>
+                            {i.title}
+                        </Typography>
+
+                        <Typography variant="body1" gutterBottom>
+                            Read Full Story at: <a href={i.url} target="_blank" >{i.website}</a>
+                        </Typography>
+
+
+                        <Typography variant="subtitle2" display="block" gutterBottom>
+                            Story by: {i.by}
+                        </Typography>
+
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={1} md={2} />   {/* dummy */}
+            </React.Fragment>
+
+        );
+    }
+
     return (
 
         <div className={classes.root}>
@@ -52,18 +87,12 @@ export default function ShortNews() {
                 <div
                     className={classes.newsDrawer}
                     role="presentation"
-                    onClick={toggleDrawer(false)}
-                    onKeyDown={toggleDrawer(false)}
+                    // onClick={toggleDrawer(false)}
+                    // onKeyDown={toggleDrawer(false)}
                 >
-
-                    {news.map(i => (
-                        <Paper key={i.id}>
-                            <h2>{i.title}</h2>
-                            <a href={i.url} target="_blank" >click here to read</a>
-                            <h5>{i.by}</h5>
-                        </Paper>
-
-                    ))}
+                    <Grid container>
+                        {news.map(i => newsCards(i))}
+                    </Grid>
 
                 </div>
             </Drawer>

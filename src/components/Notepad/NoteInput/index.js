@@ -61,7 +61,7 @@ export default function NoteInput(props) {
     return (
 
         <React.Fragment>
-            <TextField onChange={handleChange} margin="dense" inputProps={inputProps} InputProps={InputProps} />
+            <TextField onChange={handleChange} autoFocus margin="dense" inputProps={inputProps} InputProps={InputProps} />
             <div className={classes.info}>
                 <p>Tips: Rearrange notes by dragging. Double click a note to delete.</p>
             </div>
