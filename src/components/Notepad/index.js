@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
-import { ReactSortable } from "react-sortablejs";
+import { ReactSortable, Sortable, Swap } from "react-sortablejs";
 import NoteInput from './NoteInput'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -19,6 +19,8 @@ const useStyles = makeStyles({
         margin: '5px 1px'
     }
 });
+
+// Sortable.mount(new Swap());
 
 export default function TemporaryDrawer() {
     const classes = useStyles();
@@ -82,7 +84,7 @@ export default function TemporaryDrawer() {
 
                         <NoteInput addNoteToNotepad={addNoteToNotepad} />
 
-                        <ReactSortable swapThreshold={0.3} list={notes} setList={setNotes}>
+                        <ReactSortable swapThreshold={0.5} list={notes} setList={setNotes}>
                             {notes.map(i => noteCards(i))}
                         </ReactSortable>
 

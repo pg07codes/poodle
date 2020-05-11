@@ -5,12 +5,12 @@ import FaceIcon from '@material-ui/icons/Face'
 import Chip from '@material-ui/core/Chip'
 
 
-export default function Filters() {
+export default function Filters(props) {
 
-    const [filter, setFilter] = useState("");
+    
 
     let onClickHandler = (newFilter) => (e) => {
-        setFilter(newFilter);
+        props.setFilter(newFilter);
     }
 
     const chips = (filter, isSelected) => (
@@ -20,13 +20,14 @@ export default function Filters() {
                 label={filter}
                 clickable
                 onClick={onClickHandler(filter)}
-                size='small'
-                color="primary"
+                color="secondary"
                 variant = {(isSelected ? "outlined" : "default")}
                 deleteIcon={<DoneIcon />}
             />
         </Grid>
     );
+
+    const FILTERS=["google","youtube"];
 
     return (
 
@@ -34,7 +35,7 @@ export default function Filters() {
 
             <Grid item xs={3}></Grid> {/*dummy items for proper alignment  */}
 
-            {["ABC", "PQR", "XYZ"].map(e => chips(e, (filter === e ? false : true)))}
+            {FILTERS.map(e => chips(e, (props.filter === e ? false : true)))}
 
             <Grid item xs={3}></Grid>  {/* dummy items for proper alignment*/}
 

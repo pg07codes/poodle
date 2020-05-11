@@ -22,7 +22,7 @@ export default function CustomBackground() {
 
         let reader = new FileReader();
 
-        if (ev.target.files.length != 0 && ev.target.files[0].size < 2000000) {
+        if (ev.target.files.length !== 0 && ev.target.files[0].size < 2000000) {
             reader.readAsDataURL(ev.target.files[0]);
             
             reader.onload = i => {

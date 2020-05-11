@@ -11,29 +11,41 @@ import Filters from './Filters'
 export default function Search() {
 
     const [searchQuery, setSearchQuery] = useState("");
+    const [filter, setFilter] = useState("google");
+    const inputRef=React.createRef();
 
     function handleChange(e) {
         setSearchQuery(e.target.value);
     }
 
-    function handleSubmit(e) {
-        // Handling Enter Press for submit
-        if (e.keyCode === 13) {
-            parseSearchQuery(searchQuery);
+    function handleEnterToSubmit(e) {
+        if (e.keyCode === 13 && searchQuery.trim() !== "") {
+
+            parseSearchQuery(filter, searchQuery);
             e.target.value = "";
+            setSearchQuery("");
+        }
+    }
+
+    function handleClickSubmit() {
+
+        if (searchQuery.trim() !== "") {
+            parseSearchQuery(filter, searchQuery);
+            inputRef.current.value = "";
             setSearchQuery("");
         }
 
     }
 
     const inputProps = {
-        onKeyDown: handleSubmit
+        onKeyDown: handleEnterToSubmit,
+        ref:inputRef
     }
 
     const InputProps = {
         endAdornment: (
             <InputAdornment position="end">
-                <SearchIcon />
+                <SearchIcon onClick={handleClickSubmit}/>
             </InputAdornment>
         )
     }
@@ -44,16 +56,16 @@ export default function Search() {
 
             <Grid container>
 
-                <Grid item xs={2}  md={3} />   {/* dummy */}
+                <Grid item xs={2} md={3} />   {/* dummy */}
 
-                <Grid item xs={8}  md={6}>
+                <Grid item xs={8} md={6}>
 
                     <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} />
 
                 </Grid>
 
                 <Grid item xs sm={1} md={2} />
-                <Grid item xs={1}  md={1} >
+                <Grid item xs={1} md={1} >
 
                     <Notepad />
 
@@ -61,7 +73,7 @@ export default function Search() {
 
             </Grid>
 
-            <Filters />
+            <Filters filter={filter} setFilter={setFilter} />
 
         </React.Fragment>
 

@@ -14,7 +14,6 @@ export default async function () {
 
     let hn = JSON.parse(localStorage.getItem('hn'));
 
-    console.log('already fetched at', hn.fetchedAt)
     if (lessThanTwelveHourAgo(hn.fetchedAt)) { // self explanatory
       
       return (hn.news);
