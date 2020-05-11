@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import { ReactSortable, Sortable, Swap } from "react-sortablejs";
 import NoteInput from './NoteInput'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import CreateIcon from '@material-ui/icons/Create';
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
 import { nanoid } from 'nanoid'
 
 const useStyles = makeStyles({
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         padding: '1px 10px'
     },
     card: {
-        maxWidth:'19vw',
+        maxWidth: '19vw',
         margin: '5px 1px'
     }
 });
@@ -71,9 +71,9 @@ export default function TemporaryDrawer() {
         <div>
 
             <React.Fragment>
-                <Button onClick={toggleDrawer(true)}>
-                    <CreateIcon />
-                </Button>
+                <Fab onClick={toggleDrawer(true)} color="secondary" aria-label="edit">
+                    <EditIcon />
+                </Fab>
                 <Drawer anchor='right' open={notepadState} onClose={toggleDrawer(false)}>
                     <div
                         className={`${classes.root}`}

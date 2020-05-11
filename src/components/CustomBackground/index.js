@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
+import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
+import Fab from '@material-ui/core/Fab';
 
 const useStyles = makeStyles({
 
 });
 
 export default function CustomBackground() {
+
+    let inputFile = React.createRef();
 
     useEffect(() => {
 
@@ -24,7 +27,7 @@ export default function CustomBackground() {
 
         if (ev.target.files.length !== 0 && ev.target.files[0].size < 2000000) {
             reader.readAsDataURL(ev.target.files[0]);
-            
+
             reader.onload = i => {
 
                 localStorage.setItem('bckgrd', i.target.result);
@@ -36,13 +39,18 @@ export default function CustomBackground() {
             }
         }
 
+    }
 
-
+    function AddBackgroundHandler() {
+        inputFile.current.click();
     }
 
     return (
         <div>
-            <input onChange={handleChange} type='file' accept="image/png, image/jpeg ,image/jpg" />
+            <Fab color="secondary" onClick={AddBackgroundHandler} aria-label="edit">
+                <AddPhotoIcon />
+            </Fab>
+            <input style={{ visibility: 'hidden' }} ref={inputFile} onChange={handleChange} type='file' accept="image/png, image/jpeg ,image/jpg" />
         </div>
     );
 

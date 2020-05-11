@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import getShortNews from './../../helpers/getShortNews'
+import Fab from '@material-ui/core/Fab';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
 const useStyles = makeStyles({
     root:{
@@ -39,7 +40,9 @@ export default function ShortNews() {
     return (
         
             <React.Fragment>
-                <Button onClick={toggleDrawer(true)}> news </Button>
+                <Fab onClick={toggleDrawer(true)} color="secondary" aria-label="edit">
+                    <DehazeIcon />
+                </Fab>
                 <Drawer anchor='bottom' open={newsGroupState} onClose={toggleDrawer(false)}>
                     <div
                         className={`${classes.fullList} ${classes.root}`}

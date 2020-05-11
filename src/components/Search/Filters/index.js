@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid';
 import DoneIcon from '@material-ui/icons/Done'
-import FaceIcon from '@material-ui/icons/Face'
 import Chip from '@material-ui/core/Chip'
-
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 export default function Filters(props) {
 
-    
+
 
     let onClickHandler = (newFilter) => (e) => {
         props.setFilter(newFilter);
@@ -16,18 +15,19 @@ export default function Filters(props) {
     const chips = (filter, isSelected) => (
         <Grid item xs key={filter}>
             <Chip
-                icon={<FaceIcon />}
+                icon={isSelected ? <CheckCircleOutlineIcon /> : null}
                 label={filter}
                 clickable
                 onClick={onClickHandler(filter)}
                 color="secondary"
-                variant = {(isSelected ? "outlined" : "default")}
+                size="small"
+                variant={(isSelected ? "default" : "outlined")}
                 deleteIcon={<DoneIcon />}
             />
         </Grid>
     );
 
-    const FILTERS=["google","youtube"];
+    const FILTERS = ["google", "youtube", "duckduckgo", "soundcloud", "vimeo"];
 
     return (
 
@@ -35,7 +35,7 @@ export default function Filters(props) {
 
             <Grid item xs={3}></Grid> {/*dummy items for proper alignment  */}
 
-            {FILTERS.map(e => chips(e, (props.filter === e ? false : true)))}
+            {FILTERS.map(e => chips(e, (props.filter === e ? true : false)))}
 
             <Grid item xs={3}></Grid>  {/* dummy items for proper alignment*/}
 

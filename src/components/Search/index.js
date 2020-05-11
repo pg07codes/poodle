@@ -60,7 +60,7 @@ export default function Search() {
 
                 <Grid item xs={8} md={6}>
 
-                    <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} />
+                    <TextField onChange={handleChange} fullWidth={true} margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
 
                 </Grid>
 
