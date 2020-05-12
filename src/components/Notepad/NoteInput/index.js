@@ -47,7 +47,7 @@ export default function NoteInput(props) {
     const inputProps = {
         onKeyDown: handleEnterToSubmit,
         ref: inputRef,
-        maxlength: 280
+        maxLength: 280
     }
 
     const InputProps = {

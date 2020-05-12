@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { ReactSortable, Sortable, Swap } from "react-sortablejs";
+import { ReactSortable, Sortable } from "react-sortablejs";
 import NoteInput from './NoteInput'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,10 +12,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { nanoid } from 'nanoid'
 
 const useStyles = makeStyles({
-    root:{
+    root: {
         position: "absolute",
         top: '3vh',
-        right:'1vw'
+        right: '1vw'
     },
     notepadDrawer: {
         padding: '1px 10px'
@@ -26,9 +26,8 @@ const useStyles = makeStyles({
     }
 });
 
-// Sortable.mount(new Swap());
-
 export default function TemporaryDrawer() {
+
     const classes = useStyles();
     const [notepadState, setNotepadState] = useState(false);
     const [notes, setNotes] = useState([]);
@@ -38,6 +37,10 @@ export default function TemporaryDrawer() {
             setNotes(JSON.parse(localStorage.getItem('notes')))
         }
     }, [])
+
+    useEffect(() => {
+        localStorage.setItem('notes', JSON.stringify(notes));
+    }, [notes])
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -52,15 +55,12 @@ export default function TemporaryDrawer() {
 
         let temp = [{ id: nanoid(10), value: note }, ...notes];
         setNotes(temp);
-        localStorage.setItem('notes', JSON.stringify(temp));
-
     }
 
     const handleDelete = (id) => (e) => {
 
         let temp = notes.filter(i => (i.id !== id));
         setNotes(temp);
-        localStorage.setItem('notes', JSON.stringify(temp));
     }
 
     const noteCards = (i) => (
@@ -73,30 +73,45 @@ export default function TemporaryDrawer() {
         </Card>
     );
 
+
+    function array_move(arr, old_index, new_index) {
+        if (new_index >= arr.length) {
+            var k = new_index - arr.length + 1;
+            while (k--) {
+                arr.push(undefined);
+            }
+        }
+        arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+        return arr; // for testing
+    };
+    
+
     return (
         <div className={classes.root}>
 
-                <Tooltip title="Add Note" aria-label="Add Note">
-                    <Fab onClick={toggleDrawer(true)} size="medium" color="secondary" aria-label="edit">
-                        <EditIcon />
-                    </Fab>
-                </Tooltip>
-                <Drawer anchor='right' open={notepadState} onClose={toggleDrawer(false)}>
-                    <div
-                        className={classes.notepadDrawer}
-                        role="presentation"
-                    //onClick={toggleDrawer(false)}
-                    // onKeyDown={toggleDrawer(false)}
-                    >
+            <Tooltip title="Add Note" aria-label="Add Note">
+                <Fab onClick={toggleDrawer(true)} size="medium" color="secondary" aria-label="edit">
+                    <EditIcon />
+                </Fab>
+            </Tooltip>
+            <Drawer anchor='right' open={notepadState} onClose={toggleDrawer(false)}>
+                <div
+                    className={classes.notepadDrawer}
+                    role="presentation"
+                //onClick={toggleDrawer(false)}
+                // onKeyDown={toggleDrawer(false)}
+                >
+                    <NoteInput addNoteToNotepad={addNoteToNotepad} />
 
-                        <NoteInput addNoteToNotepad={addNoteToNotepad} />
+                    <ReactSortable swapThreshold={0.5}
+                        list={notes} setList={setNotes}>
+        
+                        {notes.map(i => noteCards(i))}
 
-                        <ReactSortable swapThreshold={0.5} list={notes} setList={setNotes}>
-                            {notes.map(i => noteCards(i))}
-                        </ReactSortable>
+                    </ReactSortable>
 
-                    </div>
-                </Drawer>
+                </div>
+            </Drawer>
 
         </div>
     );
