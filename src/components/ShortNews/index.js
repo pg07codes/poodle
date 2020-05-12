@@ -79,7 +79,7 @@ export default function ShortNews() {
 
         <div className={classes.root}>
             <Tooltip title="HackerNews" aria-label="HackerNews">
-                <Fab onClick={toggleDrawer(true)} size="medium" color="secondary" aria-label="edit">
+                <Fab onClick={toggleDrawer(true)} size="medium" color="primary" aria-label="edit">
                     <DehazeIcon />
                 </Fab>
             </Tooltip>

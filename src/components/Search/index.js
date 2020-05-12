@@ -20,10 +20,15 @@ export default function Search() {
     const classes = useStyles();
     const [searchQuery, setSearchQuery] = useState("");
     const [filter, setFilter] = useState("google");
-    const inputRef=React.createRef();
+    const inputRef=React.useRef();
 
     function handleChange(e) {
         setSearchQuery(e.target.value);
+    }
+
+    function setFilterAndFocus(newFilter){
+        setFilter(newFilter);
+        inputRef.current.focus();
     }
 
     function handleEnterToSubmit(e) {
@@ -76,7 +81,7 @@ export default function Search() {
 
             </Grid>
 
-            <Filters filter={filter} setFilter={setFilter} />
+            <Filters filter={filter} setFilterAndFocus={setFilterAndFocus} />
 
         </React.Fragment>
 

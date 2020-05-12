@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 export default function NoteInput(props) {
     const classes = useStyles();
     const [note, setNote] = useState("");
-    let inputRef = React.createRef();
+    let inputRef = React.useRef();
 
     function handleChange(e) {
         setNote(e.target.value);

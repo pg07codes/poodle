@@ -74,23 +74,11 @@ export default function TemporaryDrawer() {
     );
 
 
-    function array_move(arr, old_index, new_index) {
-        if (new_index >= arr.length) {
-            var k = new_index - arr.length + 1;
-            while (k--) {
-                arr.push(undefined);
-            }
-        }
-        arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-        return arr; // for testing
-    };
-    
-
     return (
         <div className={classes.root}>
 
             <Tooltip title="Add Note" aria-label="Add Note">
-                <Fab onClick={toggleDrawer(true)} size="medium" color="secondary" aria-label="edit">
+                <Fab onClick={toggleDrawer(true)} size="medium" color="primary" aria-label="edit">
                     <EditIcon />
                 </Fab>
             </Tooltip>
