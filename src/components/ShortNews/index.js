@@ -58,7 +58,7 @@ export default function ShortNews() {
                         </Typography>
 
                         <Typography variant="body1" gutterBottom>
-                            Read Full Story at: <a href={i.url} target="_blank" >{i.website}</a>
+                            Read Full Story at: <a href={i.url} >{i.website}</a>
                         </Typography>
 
 
