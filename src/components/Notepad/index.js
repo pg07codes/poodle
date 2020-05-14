@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { ReactSortable, Sortable } from "react-sortablejs";
+import { ReactSortable} from "react-sortablejs";
 import NoteInput from './NoteInput'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
