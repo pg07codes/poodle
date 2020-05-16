@@ -3,12 +3,14 @@ import Search from '../Search';
 import ShortNews from '../ShortNews'
 import CustomBackground from '../CustomBackground'
 import Notepad from '../Notepad'
+import Shortcuts from '../Shortcuts'
 
 function App() {
 
   return (
     <div>
       <Search />
+      <Shortcuts number={3}/>
       <Notepad/>
       <ShortNews/>
       <CustomBackground />

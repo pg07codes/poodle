@@ -45,7 +45,7 @@ export default function CustomBackground() {
                 document.body.style['background-attachment'] = "fixed";
                 document.body.style['background-repeat'] = "no-repeat";
                 document.body.style['background-size'] = "cover";
-                // console.log('i ran man') fix this bug.........auto click on page load.
+                // console.log('i ran man') fix this bug.........auto click on page load. pending
                 FeedbackBtnRef.current.click();
 
             }
