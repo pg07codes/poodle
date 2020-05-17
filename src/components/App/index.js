@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <Search />
-      <Shortcuts number={3}/>
+      <Shortcuts/>
       <Notepad/>
       <ShortNews/>
       <CustomBackground />

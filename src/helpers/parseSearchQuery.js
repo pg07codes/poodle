@@ -3,46 +3,19 @@ import {
     insertForWebsiteSuggestion as iws
 } from './suggestions'
 
-
-function validURL(str) {
-
-    // returns -1 for invalid url, 0 for url Without Protocol, and 1 for url With Protocol 
-
-    let urlWithProtocol = new RegExp('^(https?:\\/\\/)' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-
-    let urlWithoutProtocol = new RegExp('^((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-
-    if (urlWithProtocol.test(str)) {
-        return 1;
-    } else if (urlWithoutProtocol.test(str)) {
-        return 0;
-    } else {
-        return -1;
-    }
-
-}
-
+import {isUrlValid} from './urlUtil'
 
 export default function parseSearchQuery(filter, query) {
 
-    if(validURL(query)===-1){
+    if(isUrlValid(query)===-1){
         iqs(query);
     }
 
-    if (validURL(query) === 1) {
+    if (isUrlValid(query) === 1) {
         iws(query,true);
         window.location = query;
 
-    } else if (validURL(query) === 0) {
+    } else if (isUrlValid(query) === 0) {
         console.log('calling iws--')
         iws(query,false);
         window.location = 'http://' + query;
