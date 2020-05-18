@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d83a293ac90a10fe88f54c7599fbfd38",
+    "revision": "fd368c958634e2d72123ad21ab9b1f93",
     "url": "/poodle/index.html"
   },
   {
-    "revision": "801bb2871f65116358b6",
+    "revision": "da5bf5134c3c85c28f43",
     "url": "/poodle/static/css/main.f2c47d5c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/poodle/static/js/2.102c6f88.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "801bb2871f65116358b6",
-    "url": "/poodle/static/js/main.c963f957.chunk.js"
+    "revision": "da5bf5134c3c85c28f43",
+    "url": "/poodle/static/js/main.0866b940.chunk.js"
   },
   {
     "revision": "30fd63dd287539b2e25b",
