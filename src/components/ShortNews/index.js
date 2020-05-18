@@ -19,10 +19,16 @@ const useStyles = makeStyles({
         maxHeight: "55vh"
     },
     newsCardsStyle:{
-        margin:'7px 0' // do not change left/right margin or layout breaks 
+        margin:'10px 0' // do not change left/right margin or layout breaks 
     },
     newsTextStyle:{
-        padding:'4px'
+        padding:'7px'
+    },
+    paperStyle:{
+        background:'#DDF5F7'
+    },
+    newsContainerStyle:{
+        background:'linear-gradient(100deg, #A5E9E1 50%, #DDF5F7 50%)'
     }
 });
 
@@ -55,7 +61,7 @@ export default function ShortNews() {
 
                 <Grid item xs={10} md={8} className={classes.newsCardsStyle} >
 
-                    <Paper elevation={3}>
+                    <Paper elevation={3} className={classes.paperStyle} >
                         <Typography className={classes.newsTextStyle} variant="h5" gutterBottom >
                             {i.title}
                         </Typography>
@@ -93,7 +99,7 @@ export default function ShortNews() {
                     // onClick={toggleDrawer(false)}
                     // onKeyDown={toggleDrawer(false)}
                 >
-                    <Grid container>
+                    <Grid container className={classes.newsContainerStyle}>
                         {news.map(i => newsCards(i))}
                     </Grid>
 

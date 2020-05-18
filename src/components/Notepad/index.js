@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { ReactSortable} from "react-sortablejs";
+import { ReactSortable } from "react-sortablejs";
 import NoteInput from './NoteInput'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -18,10 +18,17 @@ const useStyles = makeStyles({
         right: '1vw'
     },
     notepadDrawer: {
-        padding: '1px 10px'
+        padding: '1px 10px',
+        background: 'linear-gradient(100deg, #A5E9E1 70%, #DDF5F7 70%)',
+        minHeight: '99%',
+        overflow:'auto',
+        '&::-webkit-scrollbar':{
+            display:'none'
+        }
     },
     card: {
-        maxWidth: '19vw',
+        minWidth: 'inherit',
+        maxWidth: '20vw', // not mobile friendly tho
         margin: '5px 1px'
     }
 });
@@ -93,7 +100,7 @@ export default function TemporaryDrawer() {
 
                     <ReactSortable swapThreshold={0.5}
                         list={notes} setList={setNotes}>
-        
+
                         {notes.map(i => noteCards(i))}
 
                     </ReactSortable>
