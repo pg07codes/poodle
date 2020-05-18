@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/poodle/precache-manifest.806afccf21058af1ce580b3520cca6a0.js"
+  "/poodle/precache-manifest.a056915f1325c0ebd6556de1af5b4198.js"
 );
 
 self.addEventListener('message', (event) => {
