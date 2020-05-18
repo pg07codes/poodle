@@ -73,7 +73,8 @@ export default function Search() {
 
                 <Grid item xs={8} md={6}>
 
-                    <TextField className={classes.input} onChange={handleChange} fullWidth={true} autoFocus margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
+                    <TextField className={classes.input} onChange={handleChange} fullWidth={true} autoFocus
+                    label="Search" margin="normal" inputProps={inputProps} InputProps={InputProps} variant="outlined" />
 
                 </Grid>
 

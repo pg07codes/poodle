@@ -13,8 +13,8 @@ const useStyles = makeStyles({
         marginTop: "40vh"
     },
     paper: {
-        height: '8vh',
-        width: '8vh',
+        height: 60,
+        width: 60,
         margin: '1vh 1vw',
         borderRadius: "50%",
         cursor: 'pointer'
@@ -25,7 +25,8 @@ const useStyles = makeStyles({
         alignItems: 'center'
     },
     scFont: {
-        fontSize: '0.7em'
+        fontSize: '0.7em',
+        fontWeight:'lighter'
     }
 });
 
@@ -85,7 +86,7 @@ export default function Shortcuts(props) {
 
                         <img src={getDomain(e.url) + '/favicon.ico'}
 
-                            onError={(e) => { e.target.onerror = null; e.target.src = "https://pro-cdn.pixelmator.com/pixelmator-photo/social/updates/img-twitter.jpg" }} alt=""
+                            onError={(e) => { e.target.onerror = null; e.target.src = "%PUBLIC_URL%/poodle.png" }} alt="x"
                             width={32} />
                     </Paper>
                     <span className={`${classes.centerItem} ${classes.scFont}`}>{e.name}
