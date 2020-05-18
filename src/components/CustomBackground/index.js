@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import Fab from '@material-ui/core/Fab';

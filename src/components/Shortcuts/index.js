@@ -6,21 +6,26 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AddShortcutDialog from './AddShortcutDialog'
 import { isUrlValid, getDomain } from '../../helpers/urlUtil'
 import { nanoid } from 'nanoid'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
     root: {
         marginTop: "30vh"
     },
     paper: {
-        height: 70,
-        width: 70,
+        height: '8vh',
+        width: '8vh',
         margin: '1vh 1vw',
-        borderRadius: "50%"
+        borderRadius: "50%",
+        cursor: 'pointer'
     },
-    plusBtn: {
+    centerItem: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    scFont: {
+        fontSize: '0.7em'
     }
 });
 
@@ -64,36 +69,52 @@ export default function Shortcuts(props) {
         window.open(url, '_blank');
     }
 
+    const deleteShortcut = (id) => () => {
+        let temp = localStorage.getItem('sc');
+        temp = JSON.parse(temp);
+        temp = temp.filter(el => el.id !== id)
+        setsc(temp);
+    }
 
     let shortcutCards = () => {
         if (sc.length !== 0) {
             let temp = sc.map(e => (
                 <Grid item key={e.id}>
                     <Paper onClick={openShortcut(e.url)} elevation={3}
-                        className={`${classes.paper}  ${classes.plusBtn}`} >
-                        
+                        className={`${classes.paper}  ${classes.centerItem}`} >
+
                         <img src={getDomain(e.url) + '/favicon.ico'}
-                            
-                            onError={(e) => { e.target.onerror = null; e.target.src = "https://pro-cdn.pixelmator.com/pixelmator-photo/social/updates/img-twitter.jpg" }}
-                            
-                            alt={e.name} width={40} />
+
+                            onError={(e) => { e.target.onerror = null; e.target.src = "https://pro-cdn.pixelmator.com/pixelmator-photo/social/updates/img-twitter.jpg" }} alt=""
+                            width={32} />
                     </Paper>
+                    <span className={`${classes.centerItem} ${classes.scFont}`}>{e.name}
+                        <DeleteIcon fontSize='inherit' style={{ cursor: 'pointer'}}
+                            color='secondary' onClick={deleteShortcut(e.id)} />
+
+                    </span>
                 </Grid>
             ));
             temp.push(
                 <Grid item>
-                    <Paper elevation={3} className={`${classes.paper}  ${classes.plusBtn}`} >
+                    <Paper elevation={3} className={`${classes.paper}  ${classes.centerItem}`} >
                         <AddCircleOutlineIcon onClick={openShortcutDialog} />
                     </Paper>
+                    <span className={`${classes.centerItem} ${classes.scFont}`}>
+                        Add Shortcut
+                    </span>
                 </Grid>
             );
             return temp;
         } else {
             return (
                 <Grid item>
-                    <Paper elevation={3} className={`${classes.paper}  ${classes.plusBtn}`} >
+                    <Paper elevation={3} className={`${classes.paper}  ${classes.centerItem}`} >
                         <AddCircleOutlineIcon onClick={openShortcutDialog} />
                     </Paper>
+                    <span className={`${classes.centerItem} ${classes.scFont}`}>
+                        Add Shortcut
+                    </span>
                 </Grid>
             );
         }

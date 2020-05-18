@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     },
     newsCardsStyle:{
         margin:'7px 0' // do not change left/right margin or layout breaks 
+    },
+    newsTextStyle:{
+        padding:'4px'
     }
 });
 
@@ -52,17 +55,17 @@ export default function ShortNews() {
 
                 <Grid item xs={10} md={8} className={classes.newsCardsStyle} >
 
-                    <Paper >
-                        <Typography variant="h5" gutterBottom>
+                    <Paper elevation={3}>
+                        <Typography className={classes.newsTextStyle} variant="h5" gutterBottom >
                             {i.title}
                         </Typography>
 
-                        <Typography variant="body1" gutterBottom>
+                        <Typography className={classes.newsTextStyle} variant="body1" gutterBottom>
                             Read Full Story at: <a href={i.url} >{i.website}</a>
                         </Typography>
 
 
-                        <Typography variant="subtitle2" display="block" gutterBottom>
+                        <Typography className={classes.newsTextStyle} variant="subtitle2" display="block" gutterBottom>
                             Story by: {i.by}
                         </Typography>
 

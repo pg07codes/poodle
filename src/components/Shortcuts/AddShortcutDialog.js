@@ -22,7 +22,8 @@ export default function Di(props) {
   };
 
   const nameInputProps = {
-    ref: nameRef
+    ref: nameRef,
+    maxLength:22
   }
   const urlInputProps = {
     ref: urlRef
